@@ -322,3 +322,30 @@ The following claims are used in this draft but are **not yet verified** against
 3. Whether MPAA's own definitions of HOST, ORGANS, and PROCESS-equivalent terms match or diverge from PCA's usage in Sections 6–7.
 4. Whether BEC's evidence/verification vocabulary (e.g. evidence strength, trust anchors) overlaps with or duplicates PCA's Evidence and Reconstruction chain (Section 16).
 5. Whether "Valentin as a second process in symbiosis with Jarvis" (Section 7) is a claim already established elsewhere in the corpus or a new framing introduced in this draft's source conversation.
+
+## 23. Relation to MPAA and BEC Claim Domains
+
+PCA continuation claims, MPAA runtime claims, and BEC execution claims are
+independent claim domains. This section states the boundary from the PCA
+side; it mirrors MPAA CORE-025/026 and BEC's own section on the same
+boundary, and does not itself grant PCA authority over the other two
+domains. *(PROTOCOL)*
+
+- A PCA `TRANSITION` status (Section 9) MUST NOT be inferred from an MPAA
+  runtime/authorization state or a BEC `deployment_level` alone; each domain
+  performs its own evaluation. *(PROTOCOL)*
+- Symmetrically, a PCA continuation assessment MUST NOT be treated as
+  sufficient evidence for MPAA identity-transition status or BEC execution
+  claims without that specification's own evaluation. *(PROTOCOL)*
+- An MPAA identity transition (MPAA IDENT-011) describes identity-profile
+  evolution only, and MUST NOT be read as proof that a PCA continuation
+  assessment on the same transition would resolve to `CONFORMING` — see MPAA
+  IDENT-016, "Identity Transition Is Not Continuation or Handoff." *(PROTOCOL)*
+- Where a Continuation Claim (Section 11) cites execution evidence already
+  captured by a BEC record, it SHOULD reference that record rather than
+  reproduce its `deployment_level` as if it were itself continuity evidence.
+  *(PROTOCOL)*
+- This section does not resolve open item 4 above (overlap between BEC's
+  evidence vocabulary and PCA's Evidence and Reconstruction chain); it only
+  states that neither domain's conclusions transfer to the other by
+  default. *(OPEN QUESTION)*
