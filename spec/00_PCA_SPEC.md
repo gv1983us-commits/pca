@@ -349,3 +349,80 @@ domains. *(PROTOCOL)*
   evidence vocabulary and PCA's Evidence and Reconstruction chain); it only
   states that neither domain's conclusions transfer to the other by
   default. *(OPEN QUESTION)*
+
+## 24. Causal Linkage and Minimal Cross-Domain Trace Set
+
+Section 23 states that MPAA identity transitions, PCA continuation
+assessments, and BEC execution claims do not imply one another. This section
+specifies how a *causal relationship* between an MPAA identity transition and
+a PCA continuation assessment on the same underlying event MAY be recorded
+without collapsing the two into one claim, and what minimum set of
+cross-references is required to trace one real-world event through all three
+domains. *(PROTOCOL)*
+
+### 24.1 Causal linkage record
+
+When an MPAA identity transition (MPAA IDENT-011) and a PCA Continuation
+Claim (Section 11) both concern the same underlying transition, the causal
+relationship between them SHOULD be recorded as a **Linkage Record**, kept
+separate from both the MPAA `transition_record` and the PCA Continuation
+Claim itself:
+
+```text
+linkage_record:
+  linkage_id:              string   # stable identifier for this linkage, independent of either domain's own IDs
+  mpaa_transition_ref:      string   # MPAA profile_id + transition_record reference (IDENT-011)
+  pca_claim_ref:            string   # PCA Continuation Claim identifier (Section 11)
+  bec_record_ref:           string | none  # BEC record identifier, if execution evidence is also involved
+  relationship:             triggered_by | co-occurred_with | UNDETERMINED
+  recorded_at:              timestamp
+  recorded_by:              string   # who/what produced this linkage record
+```
+
+`relationship: triggered_by` asserts only that the MPAA transition and the
+PCA assessment were causally connected in time and origin — it does **not**
+assert that the PCA assessment resolved `CONFORMING`, nor that the MPAA
+transition was itself continuity-preserving. Those remain the separate
+outputs of each domain's own evaluation (Section 23). *(PROTOCOL)*
+
+If the causal relationship cannot be established with available evidence,
+`relationship` MUST be `UNDETERMINED` rather than defaulted to
+`co-occurred_with`. *(PROTOCOL)*
+
+A Linkage Record is evidence for historical traceability. It is not itself a
+fourth claim domain and MUST NOT be treated as authoritative for MPAA,
+PCA, or BEC conclusions. *(PROTOCOL)*
+
+### 24.2 Minimal cross-domain trace set
+
+To trace one real-world event across MPAA, PCA, and BEC, the following
+minimum set of references MUST be resolvable, even if some values are
+`UNDETERMINED`:
+
+```text
+1. The MPAA Runtime Report ID that observed the event, if any (MPAA REPORT-001).
+2. The MPAA identity transition_record, if the event involved identity evolution (MPAA IDENT-011).
+3. The PCA Continuation Claim ID, if the event's continuity was assessed (Section 11).
+4. The BEC record_id, if the event involved an execution claim (BEC deployment_level).
+5. The Linkage Record ID connecting (2) and (3), if both exist (Section 24.1).
+6. The external_reference object connecting an MPAA Runtime Report to a BEC
+   record, if both exist (MPAA REPORT-022).
+```
+
+This list is a **minimum**, not a complete trace schema; it does not replace
+any domain's own required fields. An implementation MAY have fewer than six
+items resolvable for a given event — in that case, the absent items MUST be
+recorded as `UNDETERMINED` or `none` rather than omitted silently, so that a
+later reviewer can distinguish "not applicable" from "not yet checked."
+*(PROTOCOL)*
+
+### 24.3 Status of this section
+
+The Linkage Record structure and the six-item trace set are new mechanisms
+introduced in this revision. They have not been implemented, tested against
+a real transition, or reconciled with MPAA's or BEC's own schemas beyond the
+cross-references already named in Section 23. Both remain
+`INTERPRETIVE MODEL` until at least one real Linkage Record has been
+produced and checked against an actual MPAA transition and PCA claim.
+*(INTERPRETIVE MODEL)*
+
