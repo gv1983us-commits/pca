@@ -2,6 +2,16 @@
 
 # Process Continuity Architecture (PCA), v0.1
 
+> **Preserved integrated source draft — superseded as the active Core.**
+> Portable normative rules now live in [`01_PCA_CORE.md`](01_PCA_CORE.md).
+> Historical reconstruction and translation rules were separated into
+> [`../profiles/`](../profiles/); Jarvis/Hermes/Body/Brain vocabulary is retained
+> only as a provenance-bearing non-normative example in
+> [`../examples/PROJECT_PROVENANCE_JARVIS.md`](../examples/PROJECT_PROVENANCE_JARVIS.md).
+> The unchecked assertions in section 24 were resolved in
+> [`../verification/2026-07-26-corpus-verification-log.md`](../verification/2026-07-26-corpus-verification-log.md).
+> This file remains unchanged below this notice as a trace of PCA's derivation.
+
 Process Continuity Architecture (PCA) is an architectural specification for assessing continuity across changing carriers, execution environments, cognitive components and historical states.
 
 ---
