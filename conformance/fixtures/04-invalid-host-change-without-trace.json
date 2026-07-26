@@ -1,0 +1,141 @@
+{
+  "pca_version": "0.2-draft",
+  "record_id": "pca-neutral-service-migration-001",
+  "process_ref": "municipal-notification-service",
+  "usage_mode": "operational",
+  "recorded_at": "2026-07-26T12:00:00Z",
+  "transition": {
+    "from_state": {
+      "state_id": "service-state-a",
+      "carrier_ref": "container-image-sha256-old",
+      "host_ref": "host-a",
+      "corpus_ref": "service-config-v4"
+    },
+    "to_state": {
+      "state_id": "service-state-b",
+      "carrier_ref": "container-image-sha256-new",
+      "host_ref": "host-b",
+      "corpus_ref": "service-config-v4"
+    },
+    "occurred_at": "2026-07-26T11:30:00Z"
+  },
+  "claim": {
+    "origin": [
+      {
+        "statement_id": "origin-1",
+        "text": "The migrated service state derives from the pinned source image and configuration manifest.",
+        "kind": "provenance",
+        "evidence_refs": [
+          "ev-receipt"
+        ]
+      }
+    ],
+    "inherited": [
+      {
+        "statement_id": "inherited-1",
+        "text": "The notification routing contract and queued commitments were preserved.",
+        "kind": "commitment",
+        "evidence_refs": [
+          "ev-receipt",
+          "ev-tests"
+        ]
+      }
+    ],
+    "reconstructed": [],
+    "changed": [
+      {
+        "statement_id": "changed-1",
+        "text": "The execution host and container carrier changed.",
+        "kind": "configuration",
+        "evidence_refs": [
+          "ev-receipt"
+        ]
+      }
+    ],
+    "unknown": [],
+    "breaks": [],
+    "status": {
+      "overall": "EVOLVING",
+      "dimensions": {
+        "provenance": {
+          "status": "CONFORMING",
+          "evidence_refs": [
+            "ev-receipt"
+          ]
+        },
+        "semantic": {
+          "status": "CONFORMING",
+          "evidence_refs": [
+            "ev-tests"
+          ]
+        },
+        "methodological": {
+          "status": "CONFORMING",
+          "evidence_refs": [
+            "ev-tests"
+          ]
+        },
+        "historical": {
+          "status": "CONFORMING",
+          "evidence_refs": [
+            "ev-receipt"
+          ]
+        },
+        "operational": {
+          "status": "EVOLVING",
+          "evidence_refs": [
+            "ev-tests"
+          ]
+        },
+        "ethical": {
+          "status": "CONFORMING",
+          "evidence_refs": [
+            "ev-tests"
+          ]
+        },
+        "evolution": {
+          "status": "EVOLVING",
+          "evidence_refs": [
+            "ev-receipt"
+          ]
+        }
+      }
+    }
+  },
+  "evidence": [
+    {
+      "evidence_id": "ev-receipt",
+      "type": "artifact",
+      "source_ref": "migration-receipt-2026-07-26",
+      "observed_at": "2026-07-26T11:31:00Z",
+      "supports": [
+        "origin-1",
+        "inherited-1",
+        "changed-1",
+        "dimension:provenance",
+        "dimension:historical",
+        "dimension:evolution"
+      ],
+      "verified": true
+    },
+    {
+      "evidence_id": "ev-tests",
+      "type": "observation",
+      "source_ref": "post-migration-conformance-run-88",
+      "observed_at": "2026-07-26T11:45:00Z",
+      "supports": [
+        "inherited-1",
+        "dimension:semantic",
+        "dimension:methodological",
+        "dimension:operational",
+        "dimension:ethical"
+      ],
+      "verified": true
+    }
+  ],
+  "assertions": {
+    "identity_established": false,
+    "subjectivity_established": false,
+    "uninterrupted_persistence_established": false
+  }
+}

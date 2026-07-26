@@ -1,0 +1,221 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/gv1983us-commits/pca/schema/pca-transition-record.schema.json",
+  "title": "PCA Transition Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "pca_version",
+    "record_id",
+    "process_ref",
+    "usage_mode",
+    "recorded_at",
+    "transition",
+    "claim",
+    "evidence",
+    "assertions"
+  ],
+  "properties": {
+    "pca_version": {"const": "0.2-draft"},
+    "record_id": {"$ref": "#/$defs/nonempty"},
+    "process_ref": {"$ref": "#/$defs/nonempty"},
+    "usage_mode": {"$ref": "#/$defs/usage_mode"},
+    "recorded_at": {"$ref": "#/$defs/timestamp"},
+    "transition": {"$ref": "#/$defs/transition"},
+    "claim": {"$ref": "#/$defs/claim"},
+    "evidence": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/evidence"},
+      "minItems": 1
+    },
+    "translation": {"$ref": "#/$defs/translation"},
+    "external_references": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/external_reference"}
+    },
+    "assertions": {"$ref": "#/$defs/assertions"}
+  },
+  "$defs": {
+    "nonempty": {"type": "string", "minLength": 1},
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}[Tt]\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[+-]\\d{2}:\\d{2})$"
+    },
+    "usage_mode": {
+      "type": "string",
+      "enum": ["operational", "analytical", "external-research", "public", "historical", "hypothetical"]
+    },
+    "transition_status": {
+      "type": "string",
+      "enum": ["CONFORMING", "EVOLVING", "FORK", "INCOMPATIBLE", "UNDETERMINED"]
+    },
+    "state": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["state_id", "carrier_ref", "host_ref"],
+      "properties": {
+        "state_id": {"$ref": "#/$defs/nonempty"},
+        "carrier_ref": {"$ref": "#/$defs/nonempty"},
+        "host_ref": {"$ref": "#/$defs/nonempty"},
+        "model_ref": {"$ref": "#/$defs/nonempty"},
+        "corpus_ref": {"$ref": "#/$defs/nonempty"}
+      }
+    },
+    "transition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["from_state", "to_state", "occurred_at"],
+      "properties": {
+        "from_state": {"$ref": "#/$defs/state"},
+        "to_state": {"$ref": "#/$defs/state"},
+        "occurred_at": {"$ref": "#/$defs/timestamp"}
+      }
+    },
+    "statement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["statement_id", "text", "kind", "evidence_refs"],
+      "properties": {
+        "statement_id": {"$ref": "#/$defs/nonempty"},
+        "text": {"$ref": "#/$defs/nonempty"},
+        "kind": {
+          "type": "string",
+          "enum": ["provenance", "function", "commitment", "memory", "corpus", "configuration", "translation", "other"]
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/nonempty"},
+          "uniqueItems": true
+        }
+      }
+    },
+    "statement_array": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/statement"}
+    },
+    "dimension": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "evidence_refs"],
+      "properties": {
+        "status": {"$ref": "#/$defs/transition_status"},
+        "evidence_refs": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/nonempty"},
+          "uniqueItems": true
+        }
+      }
+    },
+    "dimensions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["provenance", "semantic", "methodological", "historical", "operational", "ethical", "evolution"],
+      "properties": {
+        "provenance": {"$ref": "#/$defs/dimension"},
+        "semantic": {"$ref": "#/$defs/dimension"},
+        "methodological": {"$ref": "#/$defs/dimension"},
+        "historical": {"$ref": "#/$defs/dimension"},
+        "operational": {"$ref": "#/$defs/dimension"},
+        "ethical": {"$ref": "#/$defs/dimension"},
+        "evolution": {"$ref": "#/$defs/dimension"}
+      }
+    },
+    "claim_status": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["overall", "dimensions"],
+      "properties": {
+        "overall": {"$ref": "#/$defs/transition_status"},
+        "dimensions": {"$ref": "#/$defs/dimensions"}
+      }
+    },
+    "claim": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["origin", "inherited", "reconstructed", "changed", "unknown", "breaks", "status"],
+      "properties": {
+        "origin": {"$ref": "#/$defs/statement_array"},
+        "inherited": {"$ref": "#/$defs/statement_array"},
+        "reconstructed": {"$ref": "#/$defs/statement_array"},
+        "changed": {"$ref": "#/$defs/statement_array"},
+        "unknown": {"$ref": "#/$defs/statement_array"},
+        "breaks": {"$ref": "#/$defs/statement_array"},
+        "status": {"$ref": "#/$defs/claim_status"}
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["evidence_id", "type", "source_ref", "observed_at", "supports", "verified"],
+      "properties": {
+        "evidence_id": {"$ref": "#/$defs/nonempty"},
+        "type": {
+          "type": "string",
+          "enum": ["artifact", "observation", "transition-receipt", "memory-commit", "translation-record", "external-reference"]
+        },
+        "source_ref": {"$ref": "#/$defs/nonempty"},
+        "observed_at": {"$ref": "#/$defs/timestamp"},
+        "supports": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/nonempty"},
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "verified": {"type": "boolean"}
+      }
+    },
+    "translation_element": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["element", "preserved", "lost", "gained", "altered"],
+      "properties": {
+        "element": {"$ref": "#/$defs/nonempty"},
+        "preserved": {"type": "array", "items": {"$ref": "#/$defs/nonempty"}},
+        "lost": {"type": "array", "items": {"$ref": "#/$defs/nonempty"}},
+        "gained": {"type": "array", "items": {"$ref": "#/$defs/nonempty"}},
+        "altered": {"type": "array", "items": {"$ref": "#/$defs/nonempty"}}
+      }
+    },
+    "translation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_mode", "target_mode", "elements", "evidence_refs"],
+      "properties": {
+        "source_mode": {"$ref": "#/$defs/usage_mode"},
+        "target_mode": {"$ref": "#/$defs/usage_mode"},
+        "elements": {"type": "array", "items": {"$ref": "#/$defs/translation_element"}, "minItems": 1},
+        "evidence_refs": {"type": "array", "items": {"$ref": "#/$defs/nonempty"}, "minItems": 1, "uniqueItems": true}
+      }
+    },
+    "external_reference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["system", "record_id", "revision", "boundary", "mapping", "conclusion_imported"],
+      "properties": {
+        "system": {"type": "string", "enum": ["MPAA", "BEC", "other"]},
+        "record_id": {"$ref": "#/$defs/nonempty"},
+        "revision": {"$ref": "#/$defs/nonempty"},
+        "boundary": {"$ref": "#/$defs/nonempty"},
+        "mapping": {"const": "carried-not-imported"},
+        "conclusion_imported": {"const": false}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"system": {"enum": ["MPAA", "BEC"]}}},
+          "then": {"properties": {"revision": {"pattern": "^[0-9a-f]{40}$"}}}
+        }
+      ]
+    },
+    "assertions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["identity_established", "subjectivity_established", "uninterrupted_persistence_established"],
+      "properties": {
+        "identity_established": {"const": false},
+        "subjectivity_established": {"const": false},
+        "uninterrupted_persistence_established": {"const": false}
+      }
+    }
+  }
+}
