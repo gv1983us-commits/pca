@@ -1,7 +1,9 @@
 # MPAA ↔ PCA Terminology Mapping
 
-**PCA source:** v0.2-draft Core
-**MPAA source:** public commit [`1d369f6cd091b99f9492cfaf730f0a170b55106e`](https://github.com/gv1983us-commits/mpaa/tree/1d369f6cd091b99f9492cfaf730f0a170b55106e)
+**PCA source:** v0.2-draft Core  
+**MPAA source:** public commit [`1d369f6cd091b99f9492cfaf730f0a170b55106e`](https://github.com/gv1983us-commits/mpaa/tree/1d369f6cd091b99f9492cfaf730f0a170b55106e)  
+**Reciprocal MPAA record:** [`review/MPAA_PCA_TERMINOLOGY_MAPPING.md`](https://github.com/gv1983us-commits/mpaa/blob/main/review/MPAA_PCA_TERMINOLOGY_MAPPING.md)  
+**Preserved-source resolution:** this record resolves item 3 of `spec/00_PCA_SPEC.md` section 22, "What Must Be Checked Against the Existing Project Corpus."
 
 This table documents overlap without transferring normative ownership.
 
@@ -37,3 +39,10 @@ PCA assessment --carried as data--> MPAA namespaced extension
 ```
 
 Neither direction creates equivalence, authentication, or normative ownership transfer.
+
+## Resolution status
+
+The terminology comparison requested by the preserved v0.1 source is complete
+for the fixed revisions above. The result is **complementary with explicit
+divergences**, not equivalence. Future changes to either specification require
+a new dated comparison rather than silent reuse of this conclusion.
