@@ -23,7 +23,7 @@ A valid PCA record does not prove consciousness, subjectivity, personal identity
 | [`profiles/02_TRANSLATION_USAGE_MODE_PROFILE.md`](profiles/02_TRANSLATION_USAGE_MODE_PROFILE.md) | non-normative translation profile |
 | [`examples/PROJECT_PROVENANCE_JARVIS.md`](examples/PROJECT_PROVENANCE_JARVIS.md) | provenance-bearing project example, explicitly non-normative |
 | [`conformance/`](conformance/) | positive, negative, parser, and derivation fixtures |
-| [`verification/`](verification/) | corpus verification and MPAA/PCA terminology mapping |
+| [`verification/`](verification/) | corpus verification and reciprocal MPAA/PCA terminology mapping |
 | [`spec/00_PCA_SPEC.md`](spec/00_PCA_SPEC.md) | preserved integrated v0.1 source draft, superseded as active Core |
 
 The Core is readable and implementable without knowledge of the originating project vocabulary.
@@ -42,7 +42,7 @@ python validator/pca_validate.py conformance/fixtures/01-valid-continuation-clai
 
 Exit codes are `0=VALID`, `1=INVALID record`, and `2=parser/tool/schema boundary failure`.
 
-GitHub Actions compiles the validator, runs the regression and schema-parity suites, and validates canonical positive fixtures on Python 3.10, 3.11, 3.12, and 3.13.
+GitHub Actions compiles the validator, runs the regression and schema-parity suites, checks verification records, and validates canonical positive fixtures on Python 3.10, 3.11, 3.12, and 3.13.
 
 ## What is machine-checked
 
@@ -71,7 +71,7 @@ The primary valid fixture describes migration of a municipal notification servic
 - **BEC** owns portable execution-evidence acceptance and deployment-level derivation. Verified execution or `closed` does not establish a committed PCA next state.
 - **PCA** owns only the transition-continuity assessment defined here.
 
-The pinned relation is documented in [`verification/terminology-mapping-mpaa-pca.md`](verification/terminology-mapping-mpaa-pca.md). Citation does not transfer normative ownership.
+The pinned relation is documented in [`verification/terminology-mapping-mpaa-pca.md`](verification/terminology-mapping-mpaa-pca.md). That record explicitly resolves item 3 of the preserved v0.1 source section "What Must Be Checked Against the Existing Project Corpus" and links the reciprocal MPAA-owned review. Citation does not transfer normative ownership.
 
 ## Status
 
