@@ -1,5 +1,7 @@
 # PCA — Process Continuity Architecture
 
+[![PCA CI](https://github.com/gv1983us-commits/pca/actions/workflows/ci.yml/badge.svg)](https://github.com/gv1983us-commits/pca/actions/workflows/ci.yml)
+
 **PCA** is an exploratory architecture for recording and testing bounded claims that a process continued across a change of carrier, host, model, corpus state, or usage mode.
 
 Its central boundary is:
@@ -39,6 +41,8 @@ python validator/pca_validate.py conformance/fixtures/01-valid-continuation-clai
 ```
 
 Exit codes are `0=VALID`, `1=INVALID record`, and `2=parser/tool/schema boundary failure`.
+
+GitHub Actions compiles the validator, runs the regression and schema-parity suites, and validates canonical positive fixtures on Python 3.10, 3.11, 3.12, and 3.13.
 
 ## What is machine-checked
 
