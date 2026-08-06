@@ -1,0 +1,106 @@
+{
+  "schema_version": "1.0",
+  "artifact_id": "claude.pca",
+  "title": "Process Continuity Architecture (PCA)",
+  "abbreviation": "PCA",
+  "repository": "gv1983us-commits/pca",
+  "artifact_version": "0.2-draft",
+  "record_schema_version": "0.2-draft",
+  "artifact_status": "canonical_public_draft",
+  "specification_status": "exploratory_public_draft",
+  "license": "Apache-2.0",
+  "normative_authority_model": "two_surface_domain_ownership_matrix",
+  "normative_surface_count": 2,
+  "normative_surfaces": [
+    {
+      "path": "spec/01_PCA_CORE.md",
+      "domain": "semantic_transition_continuity_assessment"
+    },
+    {
+      "path": "schema/pca-transition-record.schema.json",
+      "domain": "transition_record_representation"
+    }
+  ],
+  "reference_implementation": {
+    "path": "validator/pca_validate.py",
+    "normative": false,
+    "role": "fail_closed_reference_validator"
+  },
+  "canonical_surfaces": {
+    "human_entry": "README.md",
+    "canon": "CANON.md",
+    "machine_passport": "ARTIFACT.json",
+    "relations": "RELATIONS.md",
+    "provenance": "PROVENANCE.md",
+    "normative_core": "spec/01_PCA_CORE.md",
+    "canonical_schema": "schema/pca-transition-record.schema.json",
+    "reference_validator": "validator/pca_validate.py",
+    "conformance": "conformance/",
+    "verification": "verification/",
+    "preserved_source": "spec/00_PCA_SPEC.md"
+  },
+  "canonical_checks": [
+    "python -m unittest discover -s validator -p \"test_*.py\" -v",
+    "python -m unittest discover -s verification -p \"test_*.py\" -v",
+    "python validator/pca_validate.py conformance/fixtures/01-valid-continuation-claim.json --quiet",
+    "python validator/pca_validate.py conformance/fixtures/05-valid-usage-mode-translation.json --quiet"
+  ],
+  "claim_domain": "bounded_process_continuity_assessment_across_one_transition",
+  "derived_statuses": [
+    "CONFORMING",
+    "EVOLVING",
+    "FORK",
+    "INCOMPATIBLE",
+    "UNDETERMINED"
+  ],
+  "assertion_boundaries": {
+    "identity_established": false,
+    "subjectivity_established": false,
+    "uninterrupted_persistence_established": false,
+    "world_truth_evaluated": false,
+    "independent_implementation_conformance_claimed": false,
+    "external_certification_claimed": false
+  },
+  "relations": [
+    {
+      "artifact_id": "claude.bec",
+      "repository": "gv1983us-commits/behavioral-execution-contract",
+      "reviewed_revision": "62f2b7940b5ca7a4a8b24150b9c45a6ab5d97261",
+      "relation": "execution_evidence_may_be_carried_not_imported",
+      "conclusion_imported": false
+    },
+    {
+      "artifact_id": "claude.mpaa",
+      "repository": "gv1983us-commits/mpaa",
+      "reviewed_revision": "0d1aaf35cc4826622f3312fdd2a1c2d40890b965",
+      "relation": "architecture_and_runtime_records_may_be_carried_not_imported",
+      "conclusion_imported": false
+    },
+    {
+      "artifact_id": "claude.review_protocol",
+      "repository": "gv1983us-commits/repository-canon-review-protocol",
+      "reviewed_revision": "e2ff9182014d8a8f3c3e7ea1ea269eecb8679035",
+      "relation": "source_selection_and_review_receipts_only",
+      "conclusion_imported": false
+    },
+    {
+      "artifact_id": "claude.arb",
+      "repository": "gv1983us-commits/agent-runtime-boundaries",
+      "reviewed_revision": "6b6c32cd467a4b5e4863d082b9da5bdd40d7dced",
+      "relation": "non_normative_analytical_companion",
+      "conclusion_imported": false
+    },
+    {
+      "artifact_id": "claude.cdts",
+      "repository": "gv1983us-commits/cdts",
+      "reviewed_revision": "f91dbc003519efd5264655d905d0530dbfeac2fd",
+      "relation": "cross_domain_correlation_owned_by_cdts",
+      "conclusion_imported": false
+    }
+  ],
+  "historical_boundaries": {
+    "preserved_v0_1_is_active_normative_surface": false,
+    "v0_1_linkage_record_is_current_pca_requirement": false,
+    "v0_1_linkage_record_is_cdts_precursor": true
+  }
+}
