@@ -1,8 +1,12 @@
 # PCA Core — Process Continuity Architecture, v0.2-draft
 
-**Status:** exploratory public draft
-**Normative surface:** this document, the canonical schema, and the validator rules explicitly identified below
+**Status:** exploratory public draft  
+**Normative semantic surface:** this document  
+**Canonical record representation:** [`../schema/pca-transition-record.schema.json`](../schema/pca-transition-record.schema.json)  
+**Reference implementation:** [`../validator/pca_validate.py`](../validator/pca_validate.py), non-normative  
 **No independent implementation report has been published.**
+
+The Core and the canonical Schema form PCA's two-surface normative set. This Core owns semantic meaning and admissibility rules. The Schema owns machine-readable record representation. The validator implements both as a fail-closed reference implementation but does not become a third specification.
 
 ## 1. Purpose
 
@@ -38,9 +42,15 @@ PCA does not define:
 - a storage, memory, or consciousness theory;
 - an automatic right to merge two process histories.
 
-## 3. Normative language
+## 3. Normative language and ownership
 
-`MUST`, `MUST NOT`, `SHOULD`, `SHOULD NOT`, and `MAY` are normative only in this Core, the canonical schema, and the validator contract. Historical and project profiles are informative unless they explicitly quote a Core rule.
+`MUST`, `MUST NOT`, `SHOULD`, `SHOULD NOT`, and `MAY` are semantically normative only in this Core.
+
+The canonical Schema is structurally normative for Transition Record shape, required fields, types, enumerations, constants, and structural closure. It does not independently create semantic implications.
+
+Historical drafts, profiles, examples, verification records, fixtures, validator code, and README prose are informative unless they quote or test an owning normative rule.
+
+If Core and Schema disagree, the repository is defective. Neither surface silently overrides the other outside its domain.
 
 ## 4. Terms
 
@@ -92,7 +102,7 @@ Every transition record MUST contain these six collections, even when a collecti
 
 Omission MUST NOT be used to turn an unknown into a negative or a positive. Unknowns are recorded explicitly.
 
-Every statement MUST have a unique `statement_id`, a non-empty text, a kind, and zero or more evidence references. A resolved claim SHOULD cite evidence; absence of evidence limits the status that can be justified.
+Every statement MUST have a unique `statement_id`, a non-empty text, a kind, and zero or more evidence references. A resolved statement requires addressable evidence under the reference validator contract. Evidence presence alone does not establish truth outside its declared support target.
 
 ## 7. Assessment dimensions
 
@@ -138,7 +148,7 @@ Evidence objects have unique identifiers and declare:
 - source reference;
 - supported statement or dimension targets;
 - whether verification occurred;
-- optional observation time.
+- observation time.
 
 References are bidirectional:
 
@@ -150,6 +160,8 @@ A changed carrier, host, or model requires verified `transition-receipt` evidenc
 An inherited statement of kind `memory` requires verified `memory-commit` evidence supporting that statement. A `trace`, `artifact`, `observation`, prompt, or archive read alone is insufficient.
 
 Evidence verification establishes only that the cited evidence passed its stated verification step. It does not establish identity or truth outside its declared support target.
+
+PCA evidence does not import BEC evidence strength, trust-anchor confidence, task risk, policy thresholds, deployment level, or return-state semantics. A BEC record may be carried as an external reference and independently evaluated for a PCA support target.
 
 ## 10. Translation contract
 
@@ -169,19 +181,39 @@ A translated public representation is a projection of a fuller state, not proof 
 
 PCA does not import neighboring conclusions by vocabulary overlap.
 
-### MPAA
+### 11.1 MPAA
 
-MPAA commit [`1d369f6cd091b99f9492cfaf730f0a170b55106e`](https://github.com/gv1983us-commits/mpaa/tree/1d369f6cd091b99f9492cfaf730f0a170b55106e) defines an agent architecture, identity-profile rules, and an internal Runtime Report. MPAA coordination, session continuity, or identity-profile continuity is not a PCA continuation result. PCA does not redefine MPAA participants, organs, authorization, or runtime state.
+MPAA canonical revision [`0d1aaf35cc4826622f3312fdd2a1c2d40890b965`](https://github.com/gv1983us-commits/mpaa/tree/0d1aaf35cc4826622f3312fdd2a1c2d40890b965) defines portable agent architecture, Identity Profile rules, Runtime Contract semantics, Runtime Report representation, and conformance procedure.
 
-### BEC
+MPAA coordination, session continuity, identity-profile continuity, Runtime Report validity, or internal task result is not a PCA continuation result. PCA does not redefine MPAA participants, organs, authorization, runtime state, report representation, or conformance.
 
-BEC commit [`bb46f5f8aac96d1cffba7a334c5d17fb331ef3af`](https://github.com/gv1983us-commits/behavioral-execution-contract/tree/bb46f5f8aac96d1cffba7a334c5d17fb331ef3af) defines a portable consumer-facing execution-evidence record. BEC execution verification or `return_state: closed` is not a PCA continuation result or proof that a next working state was committed. PCA does not award BEC deployment levels.
+### 11.2 BEC
 
-External records MAY be referenced by exact system, pinned revision, record identifier, and boundary statement. MPAA/BEC references MUST use a 40-character commit SHA. Every reference declares `mapping: carried-not-imported` and `conclusion_imported: false`. The reference carries data; it does not transfer normative ownership, authenticate the external record, or import its conclusion.
+BEC canonical revision [`62f2b7940b5ca7a4a8b24150b9c45a6ab5d97261`](https://github.com/gv1983us-commits/behavioral-execution-contract/tree/62f2b7940b5ca7a4a8b24150b9c45a6ab5d97261) defines portable task execution evidence, trust anchors, validation, deployment level, and task return state.
+
+BEC execution verification, `FULL-for-task`, or `return_state: closed` is not a PCA continuation result or proof that a next working state was committed. PCA does not award BEC deployment levels or authenticate BEC evidence.
+
+### 11.3 Review Protocol and ARB
+
+The Repository Canon and Review Protocol may supply fixed-source selection or bounded review receipts. Those receipts do not establish PCA record validity or continuation.
+
+Agent Runtime Boundaries (ARB) may supply non-normative analytical distinctions. ARB does not amend PCA terms, records, or status derivation.
+
+### 11.4 CDTS
+
+Cross-Domain Trace Set (CDTS) owns portable correlation among addressable records from independent domains. A CDTS trace may reference a PCA record but does not validate or import the PCA conclusion.
+
+The Linkage Record and minimal cross-domain trace set preserved in v0.1 section 24 are historical precursors to CDTS. They are not active PCA rules.
+
+### 11.5 External-reference rule
+
+External records MAY be referenced by exact system, pinned revision, record identifier, and boundary statement. MPAA/BEC references MUST use a 40-character commit SHA. Every reference declares `mapping: carried-not-imported` and `conclusion_imported: false`.
+
+The reference carries data. It does not transfer normative ownership, authenticate the external record, establish event identity or causality, or import its conclusion.
 
 ## 12. Canonical machine-readable surface
 
-The canonical schema is:
+The canonical Schema is:
 
 ```text
 schema/pca-transition-record.schema.json
@@ -195,22 +227,28 @@ python validator/pca_validate.py <record.json>
 
 Exit codes:
 
-- `0` — structurally and semantically valid PCA transition record;
+- `0` — structurally and semantically valid PCA Transition Record;
 - `1` — invalid record;
-- `2` — parser, input, schema, or validator-boundary failure.
+- `2` — parser, input, Schema, or validator-boundary failure.
 
-The validator is a reference implementation. Passing it establishes internal record admissibility only.
+The Schema owns representation. The validator is a reference implementation. Passing it establishes internal record admissibility only.
 
-## 13. Profiles and provenance
+## 13. Profiles, examples, verification, and provenance
 
-The portable Core is supplemented by non-normative profiles:
+The portable Core is supplemented by non-normative surfaces:
 
 - [Historical Reconstruction Profile](../profiles/01_HISTORICAL_RECONSTRUCTION_PROFILE.md);
 - [Translation and Usage-Mode Profile](../profiles/02_TRANSLATION_USAGE_MODE_PROFILE.md);
-- [Project Provenance Example](../examples/PROJECT_PROVENANCE_JARVIS.md).
+- [Project Provenance Example](../examples/PROJECT_PROVENANCE_JARVIS.md);
+- [fixed-revision verification records](../verification/);
+- [preserved integrated v0.1 source](00_PCA_SPEC.md).
 
-These documents preserve derivation and usage context without making one project's vocabulary universal.
+These documents preserve derivation, usage context, and review evidence without making one project's vocabulary or one historical mechanism universal canon.
 
 ## 14. Status and limits
 
-PCA v0.2 remains an exploratory draft. The repository provides a schema, reference validator, fixtures, and one neutral portability example, but no independent implementation report. Conformance of another implementation cannot be claimed merely because it reproduces the reference validator's outputs on the shipped fixtures.
+PCA `0.2-draft` remains an exploratory canonical public draft. The repository provides a Core, canonical Schema, reference validator, fixtures, profiles, examples, and verification records, but no independent implementation report.
+
+Conformance of another implementation cannot be claimed merely because it reproduces the reference validator's outputs on the shipped fixtures.
+
+A valid PCA record remains a bounded admissibility result about one stated transition. It is not identity, subjectivity, uninterrupted persistence, external certification, or world truth.
