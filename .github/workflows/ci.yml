@@ -27,16 +27,21 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-      - name: Install test-only schema oracle
+      - name: Install test-only Schema oracle
         run: python -m pip install "jsonschema>=4.20,<5"
 
       - name: Compile validator and verification checks
-        run: python -m py_compile validator/pca_validate.py validator/mini_jsonschema.py validator/test_validator.py validator/test_schema_parity.py verification/test_terminology_mapping.py
+        run: python -m compileall -q validator verification
 
-      - name: Run regression suite
+      - name: Parse canonical JSON surfaces
+        run: |
+          python -m json.tool ARTIFACT.json > /dev/null
+          python -m json.tool schema/pca-transition-record.schema.json > /dev/null
+
+      - name: Run validator, regression, and Schema-parity suite
         run: python -m unittest discover -s validator -p "test_*.py" -v
 
-      - name: Run verification publication checks
+      - name: Run artifact and fixed-revision verification gates
         run: python -m unittest discover -s verification -p "test_*.py" -v
 
       - name: Validate canonical positive fixtures
