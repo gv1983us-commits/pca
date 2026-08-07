@@ -3,9 +3,9 @@
 **Artifact:** Process Continuity Architecture (PCA)  
 **Corpus identity:** `claude.pca`  
 **Repository:** `gv1983us-commits/pca`  
-**PCA version:** `0.2-draft`  
-**Canonical status:** canonical public draft  
-**Specification status:** exploratory public draft; not a finalized standard or external certification
+**PCA version:** `0.2`  
+**Canonical status:** canonical public (sealed 2026-08-07)  
+**Specification status:** exploratory public stable; not a finalized standard or external certification
 
 This document declares how the public PCA repository is read, cited, checked, and changed as one technical artifact.
 
@@ -129,7 +129,7 @@ owning normative surface
 
 Documentation-only changes MUST NOT be presented as new PCA semantics.
 
-A future version may supersede `0.2-draft`, but it MUST do so explicitly. Earlier revisions remain valid historical sources for claims made about them.
+A future version may supersede `0.2`, but it MUST do so explicitly. Earlier revisions remain valid historical sources for claims made about them.
 
 ## 9. Corpus boundary
 
@@ -141,7 +141,7 @@ The exact PCA-side relations are declared in [`RELATIONS.md`](RELATIONS.md) and 
 
 ## 10. Canon limits
 
-PCA remains an exploratory canonical public draft. It has no independent implementation report and makes no multi-implementation conformance claim.
+PCA remains an exploratory canonical public artifact. It has no independent implementation report and makes no multi-implementation conformance claim.
 
 > **Continuation is assessed, not declared. Canon is integrity, not finality.**  
 > PCA is canonical when its source, meaning, representation, checks, limits, relations, and provenance can be read and reproduced from one pinned public revision.

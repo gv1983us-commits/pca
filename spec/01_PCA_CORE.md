@@ -1,6 +1,6 @@
-# PCA Core — Process Continuity Architecture, v0.2-draft
+# PCA Core — Process Continuity Architecture, v0.2
 
-**Status:** exploratory public draft  
+**Status:** exploratory public stable  
 **Normative semantic surface:** this document  
 **Canonical record representation:** [`../schema/pca-transition-record.schema.json`](../schema/pca-transition-record.schema.json)  
 **Reference implementation:** [`../validator/pca_validate.py`](../validator/pca_validate.py), non-normative  
@@ -247,7 +247,7 @@ These documents preserve derivation, usage context, and review evidence without 
 
 ## 14. Status and limits
 
-PCA `0.2-draft` remains an exploratory canonical public draft. The repository provides a Core, canonical Schema, reference validator, fixtures, profiles, examples, and verification records, but no independent implementation report.
+PCA `0.2` remains an exploratory canonical public artifact. The repository provides a Core, canonical Schema, reference validator, fixtures, profiles, examples, and verification records, but no independent implementation report.
 
 Conformance of another implementation cannot be claimed merely because it reproduces the reference validator's outputs on the shipped fixtures.
 
