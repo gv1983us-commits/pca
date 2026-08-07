@@ -1,6 +1,6 @@
 # PCA Reference Validator
 
-The validator checks a PCA `0.2-draft` Transition Record against the canonical Schema and PCA Core semantic boundaries.
+The validator checks a PCA `0.2` Transition Record against the canonical Schema and PCA Core semantic boundaries.
 
 The active authority model is declared in [`../CANON.md`](../CANON.md):
 
