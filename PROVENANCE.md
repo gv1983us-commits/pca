@@ -14,7 +14,7 @@ gv1983us-commits/pca
 
 The repository owner and maintainer control admission to the canonical branch. Git commits, pull requests, reviews, tags, and CI runs preserve the public revision history.
 
-Normative authority comes from maintainer-approved repository content. For PCA `0.2-draft`, that authority is divided between:
+Normative authority comes from maintainer-approved repository content. For PCA `0.2`, that authority is divided between:
 
 - [`spec/01_PCA_CORE.md`](spec/01_PCA_CORE.md) for semantic rules;
 - [`schema/pca-transition-record.schema.json`](schema/pca-transition-record.schema.json) for record representation.
@@ -53,6 +53,10 @@ fixed-revision MPAA terminology record and publication checks
 2026-08-06
 individual artifact canon pass
 CANON.md, ARTIFACT.json, RELATIONS.md, PROVENANCE.md, updated neighbor reviews, and executable canon checks
+
+2026-08-07
+stabilization pass
+0.2-draft -> 0.2, canonical_public_draft -> canonical_public across ARTIFACT.json, Schema, fixtures, and human-readable surfaces
 ```
 
 This is a public engineering trace, not a proof that every intermediate interpretation was correct.
