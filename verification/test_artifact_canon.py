@@ -51,10 +51,10 @@ class ArtifactCanonTests(unittest.TestCase):
     def test_machine_passport_identity(self):
         self.assertEqual("claude.pca", self.passport["artifact_id"])
         self.assertEqual("gv1983us-commits/pca", self.passport["repository"])
-        self.assertEqual("0.2-draft", self.passport["artifact_version"])
-        self.assertEqual("0.2-draft", self.passport["record_schema_version"])
-        self.assertEqual("canonical_public_draft", self.passport["artifact_status"])
-        self.assertEqual("exploratory_public_draft", self.passport["specification_status"])
+        self.assertEqual("0.2", self.passport["artifact_version"])
+        self.assertEqual("0.2", self.passport["record_schema_version"])
+        self.assertEqual("canonical_public", self.passport["artifact_status"])
+        self.assertEqual("exploratory_public_stable", self.passport["specification_status"])
         self.assertEqual("Apache-2.0", self.passport["license"])
 
     def test_two_surface_normative_authority(self):
@@ -71,7 +71,7 @@ class ArtifactCanonTests(unittest.TestCase):
         self.assertIn("does not become a third specification", self.core)
 
     def test_schema_identity_matches_passport(self):
-        self.assertEqual("0.2-draft", self.schema["properties"]["pca_version"]["const"])
+        self.assertEqual("0.2", self.schema["properties"]["pca_version"]["const"])
         self.assertEqual(
             "https://github.com/gv1983us-commits/pca/schema/pca-transition-record.schema.json",
             self.schema["$id"],
@@ -129,7 +129,7 @@ class ArtifactCanonTests(unittest.TestCase):
         for path in ("CANON.md", "ARTIFACT.json", "RELATIONS.md", "PROVENANCE.md"):
             with self.subTest(path=path):
                 self.assertIn(path, self.readme)
-        self.assertIn("canonical public draft", self.readme.lower())
+        self.assertIn("canonical public artifact", self.readme.lower())
         self.assertIn("two", self.readme.lower())
 
     def test_no_machine_local_or_secret_markers_in_canon_surfaces(self):
