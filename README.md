@@ -14,7 +14,7 @@ A valid PCA record does not prove consciousness, subjectivity, personal identity
 
 ## Canonical artifact entry
 
-PCA `0.2-draft` is a **canonical public draft**. Canonical means that the repository now exposes one explicit identity, authority model, relation map, provenance record, and reproducible verification surface. It does not mean that PCA is a finalized standard or externally certified.
+PCA `0.2` is a **canonical public artifact**, sealed 2026-08-07. Canonical means that the repository now exposes one explicit identity, authority model, relation map, provenance record, and reproducible verification surface. It does not mean that PCA is a finalized standard or externally certified.
 
 Start with:
 
@@ -126,9 +126,9 @@ The exact reviewed revisions and permitted/forbidden mappings are recorded in [`
 
 ```text
 artifact_id: claude.pca
-artifact_version: 0.2-draft
-record_schema_version: 0.2-draft
-canonical_status: canonical_public_draft
+artifact_version: 0.2
+record_schema_version: 0.2
+canonical_status: canonical_public
 normative_authority: two surfaces
 ```
 
