@@ -1,6 +1,6 @@
 # Translation and Usage-Mode Profile
 
-**Status:** informative profile for PCA v0.2-draft
+**Status:** informative profile for PCA v0.2
 **Core dependency:** [`spec/01_PCA_CORE.md`](../spec/01_PCA_CORE.md)
 
 ## Purpose
